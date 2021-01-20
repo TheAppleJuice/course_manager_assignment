@@ -11,46 +11,67 @@ import java.util.*;
 
 public class StudentCollectionRepository implements StudentDao {
 
-    private Collection<Student> students = new HashSet<>();
+    private Collection<Student> students;
 
     public StudentCollectionRepository(Collection<Student> students) {
-        StudentSequencer.nextStudentId();
         this.students = students;
     }
 
+//DONE
     @Override
     public Student createStudent(String name, String email, String address) {
-        Student newStudent = new Student(name, email, address);
+        int id = StudentSequencer.nextStudentId();
+        Student newStudent = new Student(id, name, email, address);
         if (newStudent == null){
             throw new IllegalArgumentException("object is null");
         }
-        if ( email == ){
+        if ( email == null){
             throw new IllegalArgumentException("object is null");
         }
-        Student checkStudentDuplicate = findByEmailIgnoreCase(students);
+        Student checkStudentDuplicate = findById(newStudent.getId());
+        if (checkStudentDuplicate != null){
+            throw new IllegalArgumentException("Student exists");
+
+        }
         students.add(newStudent);
         return newStudent;
     }
-//FEL
+
+//DONE
     @Override
     public Student findByEmailIgnoreCase(String email) {
-        if ()
-
-        return null;
-    }
-//FEL
-    @Override
-    public Collection<Student> findByNameContains(String name) {
-        List<Student> result = new ArrayList<>();
-        for (Student student : students) {
-            for (String sk : student.getName()) {
-                if (sk.equalsIgnoreCase(name)) {
-                    result.add(student);
-                }
+        if (email == null){
+            throw new IllegalArgumentException("No match");
+        }
+        Student findStudentByEmail = null;
+        for (Student student : students){
+            if (student.getEmail().equalsIgnoreCase(email)){
+                findStudentByEmail = student;
+                break;
             }
         }
+        return findStudentByEmail;
+    }
 
-        return result;
+//FIX
+    @Override
+    public Collection<Student> findByNameContains(String name) {
+        List <Student> result = new ArrayList<>();
+        /*
+        if (name == null){
+            throw new IllegalArgumentException("No match");
+        }
+        Student findStudentByName = null;
+        for (Student student : students){
+            if (student.getEmail().equalsIgnoreCase(name)){
+                findStudentByName = student;
+                break;
+            }
+        }
+        return findStudentByName;
+
+         */
+        return null;
     }
 
 //DONE
