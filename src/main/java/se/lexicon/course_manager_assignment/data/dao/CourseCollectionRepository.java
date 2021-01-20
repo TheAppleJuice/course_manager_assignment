@@ -2,6 +2,7 @@ package se.lexicon.course_manager_assignment.data.dao;
 
 
 
+import se.lexicon.course_manager_assignment.data.sequencers.CourseSequencer;
 import se.lexicon.course_manager_assignment.model.Course;
 
 import java.time.LocalDate;
@@ -15,12 +16,17 @@ public class CourseCollectionRepository implements CourseDao{
 
 
     public CourseCollectionRepository(Collection<Course> courses) {
+        CourseSequencer.nextCourseId();
         this.courses = courses;
     }
 
     @Override
     public Course createCourse(String courseName, LocalDate startDate, int weekDuration) {
-        return null;
+        Course newCource = new Course(courseName, startDate, weekDuration);
+        courses.add(newCource);
+        // todo: Kan man göra så?
+        //  courses.add(new Course(courseName, startDate, weekDuration));
+        return newCource;
     }
 
     @Override
