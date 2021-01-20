@@ -2,7 +2,6 @@ package se.lexicon.course_manager_assignment.data.dao;
 
 
 
-import com.sun.xml.internal.xsom.impl.scd.Iterators;
 import se.lexicon.course_manager_assignment.data.sequencers.StudentSequencer;
 import se.lexicon.course_manager_assignment.model.Student;
 
@@ -64,22 +63,6 @@ public class StudentCollectionRepository implements StudentDao {
             }
         return result;
     }
-        /*
-        if (name == null){
-            throw new IllegalArgumentException("No match");
-        }
-        Student findStudentByName = null;
-        for (Student student : students){
-            if (student.getEmail().equalsIgnoreCase(name)){
-                findStudentByName = student;
-                break;
-            }
-        }
-        return findStudentByName;
-
-         */
-        return null;
-    }
 
 //DONE
     @Override
@@ -121,6 +104,6 @@ public class StudentCollectionRepository implements StudentDao {
 //DONE
     @Override
     public void clear() {
-        this.students = new HashSet<>();
+        this.students = new ArrayList<>();
     }
 }

@@ -14,28 +14,35 @@ public class Course {
     private Collection <Student> students;
 
     public Course() {
-       id = CourseSequencer.nextCourseId();
     }
 
     public Course (String courseName, LocalDate startDate, int weekDuration) {
-        this.id = CourseSequencer.nextCourseId();
         this.courseName = courseName;
         StartDate = startDate;
         this.weekDuration = weekDuration;
     }
 
-    public Course( String courseName, LocalDate startDate, int weekDuration, Collection<Student> students) {
-        this.id = CourseSequencer.nextCourseId();
+    public Course(Integer id, String courseName, LocalDate startDate, int weekDuration) {
+        this.id = id;
+        this.courseName = courseName;
+        StartDate = startDate;
+        this.weekDuration = weekDuration;
+
+    }
+
+    public Course(String courseName, LocalDate startDate, int weekDuration, Collection<Student> students) {
         this.courseName = courseName;
         StartDate = startDate;
         this.weekDuration = weekDuration;
         this.students = students;
     }
 
-
-
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCourseName() {
