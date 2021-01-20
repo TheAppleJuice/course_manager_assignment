@@ -53,10 +53,17 @@ public class StudentCollectionRepository implements StudentDao {
         return findStudentByEmail;
     }
 
-//FIX
+//DONE ?
     @Override
     public Collection<Student> findByNameContains(String name) {
         List <Student> result = new ArrayList<>();
+        for (Student student : students) {
+                if (name.equalsIgnoreCase(student.getName())) {
+                    result.add(student);
+                }
+            }
+        return result;
+    }
         /*
         if (name == null){
             throw new IllegalArgumentException("No match");
