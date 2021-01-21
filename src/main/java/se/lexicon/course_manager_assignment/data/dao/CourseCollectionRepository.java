@@ -78,6 +78,7 @@ public class CourseCollectionRepository implements CourseDao{
     public Collection<Course> findByDateAfter(LocalDate start) {
         return null;
     }
+
 //DONE
     @Override
     public Collection<Course> findAll() {
