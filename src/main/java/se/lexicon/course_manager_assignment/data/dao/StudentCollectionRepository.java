@@ -21,7 +21,7 @@ public class StudentCollectionRepository implements StudentDao {
     public Student createStudent(String name, String email, String address) {
         int id = StudentSequencer.nextStudentId();
         Student newStudent = new Student(id, name, email, address);
-        if (newStudent == null){
+        /*if (newStudent == null){
             throw new IllegalArgumentException("object is null");
         }
         if ( email == null){
@@ -31,7 +31,7 @@ public class StudentCollectionRepository implements StudentDao {
         if (checkStudentDuplicate != null){
             throw new IllegalArgumentException("Student exists");
 
-        }
+        }*/
         students.add(newStudent);
         return newStudent;
     }
@@ -39,9 +39,9 @@ public class StudentCollectionRepository implements StudentDao {
 //DONE
     @Override
     public Student findByEmailIgnoreCase(String email) {
-        if (email == null){
+        /*if (email == null){
             throw new IllegalArgumentException("No match");
-        }
+        }*/
         Student findStudentByEmail = null;
         for (Student student : students){
             if (student.getEmail().equalsIgnoreCase(email)){
@@ -67,9 +67,7 @@ public class StudentCollectionRepository implements StudentDao {
 //DONE
     @Override
     public Student findById(int id) {
-        if (id <1){
-            throw new IllegalArgumentException("No match");
-        }
+
         Student findStudent = null;
         for (Student student : students){
             if (student.getId()==id){

@@ -78,10 +78,18 @@ public class Course {
     }
 
     public boolean enrollStudent (Student student){
+        /*if (student == null){
+            throw new IllegalArgumentException("Object is null");
+        }*/
+        students.add(student);
         return true;
     }
 
     public boolean unenrollStudent (Student student){
+        /*if (student == null){
+            throw new IllegalArgumentException("Object is null");
+        }*/
+        students.remove(student);
         return true;
     }
 
@@ -109,4 +117,6 @@ public class Course {
                 ", students=" + students +
                 '}';
     }
+
+
 }

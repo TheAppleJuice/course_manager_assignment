@@ -25,6 +25,7 @@ public class CourseCollectionRepository implements CourseDao{
         int id = CourseSequencer.nextCourseId();
 
         Course newCourse = new Course(id, courseName, startDate, weekDuration);
+        /*
         if (newCourse == null){
             throw new IllegalArgumentException("object is null");
         }
@@ -35,16 +36,16 @@ public class CourseCollectionRepository implements CourseDao{
         if (checkCourseDuplicate != null){
             throw new IllegalArgumentException("Student exists");
 
-        }
+        }*/
         courses.add(newCourse);
         return newCourse;
     }
 //DONE
     @Override
     public Course findById(int id) {
-        if (id <1){
+        /*if (id <1){
             throw new IllegalArgumentException("No match");
-        }
+        }*/
         Course findCourse = null;
         for (Course course : courses){
             if (course.getId()==id){
@@ -68,15 +69,27 @@ public class CourseCollectionRepository implements CourseDao{
         }
         return result;
     }
-
+//DONE
     @Override
     public Collection<Course> findByDateBefore(LocalDate end) {
-        return null;
+        List<Course> result = new ArrayList<>();
+        for (Course course : courses) {
+             if (course.getStartDate().isBefore(end)) {
+                    result.add(course);
+                }
+        }
+        return result;
     }
-
+//DONE
     @Override
     public Collection<Course> findByDateAfter(LocalDate start) {
-        return null;
+        List<Course> result = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.getStartDate().isAfter(start)) {
+                    result.add(course);
+                }
+            }
+        return result;
     }
 
 //DONE
@@ -88,9 +101,9 @@ public class CourseCollectionRepository implements CourseDao{
 //DONE
     @Override
     public Collection<Course> findByStudentId(int studentId) {
-        if (studentId <1){
+        /*if (studentId <1){
             throw new IllegalArgumentException("No match");
-        }
+        }*/
         List<Course> result = new ArrayList<>();
         for (Course course : courses) {
             for (Student student : course.getStudents()){
@@ -120,4 +133,5 @@ public class CourseCollectionRepository implements CourseDao{
     public void clear() {
         this.courses = new ArrayList<>();
     }
+
 }

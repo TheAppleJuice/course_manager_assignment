@@ -8,6 +8,7 @@ import se.lexicon.course_manager_assignment.data.service.converter.Converters;
 import se.lexicon.course_manager_assignment.dto.forms.CreateCourseForm;
 import se.lexicon.course_manager_assignment.dto.forms.UpdateCourseForm;
 import se.lexicon.course_manager_assignment.dto.views.CourseView;
+import se.lexicon.course_manager_assignment.model.Course;
 
 
 import java.time.LocalDate;
@@ -54,6 +55,9 @@ public class CourseManager implements CourseService {
 
     @Override
     public boolean addStudentToCourse(int courseId, int studentId) {
+        Course newCourse = new Course();
+        //newCourse.enrollStudent();
+
         return false;
     }
 
