@@ -11,6 +11,7 @@ import se.lexicon.course_manager_assignment.dto.views.StudentView;
 import se.lexicon.course_manager_assignment.model.Student;
 
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,34 +41,50 @@ public class StudentManager implements StudentService {
 
     @Override
     public StudentView update(UpdateStudentForm form) {
+        if (form.getId() <1 ){
+            return null;
+        }
 
-        return null;
+        Student updateStudentView = studentDao.findById(form.getId());
+        updateStudentView.setName(form.getName());
+        updateStudentView.setAddress(form.getAddress());
+        updateStudentView.setEmail(form.getEmail());
+
+        return converters.studentToStudentView(updateStudentView);
     }
 
     @Override
     public StudentView findById(int id) {
 
-        return null;
+        Student findByIdStudentView = studentDao.findById(id);
+
+        return converters.studentToStudentView(findByIdStudentView);
     }
 
     @Override
     public StudentView searchByEmail(String email) {
+        Student searchByEmailStudentView = studentDao.findByEmailIgnoreCase(email);
 
-        return null;
+        return converters.studentToStudentView(searchByEmailStudentView);
     }
 
     @Override
     public List<StudentView> searchByName(String name) {
-        return null;
+        Collection <Student> searchByNameStudentView = studentDao.findByNameContains(name);
+
+        return converters.studentsToStudentViews(searchByNameStudentView);
     }
 
     @Override
     public List<StudentView> findAll() {
-        return null;
+        Collection<Student> findAllStudentView = studentDao.findAll();
+        return converters.studentsToStudentViews(findAllStudentView);
     }
 
     @Override
     public boolean deleteStudent(int id) {
-        return false;
+       boolean deleteStudentBoolean = studentDao.removeStudent(studentDao.findById(id));
+        return deleteStudentBoolean;
+        //return converters.studentToStudentView(deleteStudentBoolean);
     }
 }
