@@ -40,19 +40,26 @@ public class StudentCollectionRepositoryTest {
         //testObject.createStudent(studentMatteo.getName(), studentMatteo.getEmail(), studentMatteo.getAddress());
 
 
+
         //assertEqual(Object) !!
         //assertEquals(studentSebbe, testObject.createStudent(studentSebbe.getName(), studentSebbe.getEmail(), studentSebbe.getAddress()));
         assertEquals(studentEmma, testObject.createStudent(studentEmma.getName(), studentEmma.getEmail(), studentEmma.getAddress()));
 
     }
     @Test
-    public void findByEmailIgnoreCase (){
-        Student studentEmma = new Student(1,"Emma", "emma@gmail.com", "Emmavägen 6");
+    public void findByEmailIgnoreCase () {
+        //Expected Student
+        Student studentEmma = new Student(1, "Emma", "emma@gmail.com", "Emmavägen 6");
+        Student studentSebbe = new Student(2, "Sebastian", "se.bo@gmail.com", "Vemboö Gamla skola");
 
+        //Actual Student
         testObject.createStudent(studentEmma.getName(), studentEmma.getEmail(), studentEmma.getAddress());
-        assertEquals(studentEmma, testObject.findByEmailIgnoreCase(studentEmma.getEmail()));
-    }
+        testObject.createStudent(studentSebbe.getName(), studentSebbe.getEmail(), studentSebbe.getAddress());
 
+        //assertEquals(studentEmma, testObject.findByEmailIgnoreCase(studentEmma.getEmail()));
+        assertEquals(studentSebbe, testObject.findByEmailIgnoreCase(studentSebbe.getEmail()));
+
+    }
     @Test
     public void findByNameContains (){
         Student studentMatteo = new Student(1,"Matteo", "matteo@gmail.com", "Matteovägen 1");
@@ -78,6 +85,7 @@ public class StudentCollectionRepositoryTest {
         findAllStudents.add(studentMatteo);
         findAllStudents.add(studentSebbe);
 
+
         //Array for actuall result
         testObject.createStudent(studentMatteo.getName(), studentMatteo.getEmail(), studentMatteo.getAddress());
         testObject.createStudent(studentSebbe.getName(), studentSebbe.getEmail(), studentSebbe.getAddress());
@@ -89,6 +97,27 @@ public class StudentCollectionRepositoryTest {
     //boolean removeStudent(Student student)
     @Test
     public void removeStudent (){
+        List<Student> studentList = new ArrayList<>();
+        Student student1 = new Student(1,"Sebastian", "se.bo@gmail.com", "Vemboö Gamla skola");
+        Student student2 = new Student(2,"Emma", "emma@gmail.com", "Emmavägen 6");
+
+        studentList.add(student1);
+        studentList.add(student2);
+
+        studentList.remove(student1);
+
+        List<Student> actualList = new ArrayList<>();
+        actualList.add(testObject.createStudent(student1.getName(), student1.getEmail(), student1.getAddress()));
+        actualList.add(testObject.createStudent(student2.getName(), student2.getEmail(), student2.getAddress()));
+
+        testObject.removeStudent(student1);
+
+        //assertEquals(studentList.size(), actualList.size());
+        assertEquals(student2, testObject.findById(1));
+
+
+
+
 
     }
 
