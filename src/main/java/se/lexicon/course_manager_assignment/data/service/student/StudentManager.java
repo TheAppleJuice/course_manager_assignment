@@ -85,6 +85,5 @@ public class StudentManager implements StudentService {
     public boolean deleteStudent(int id) {
        boolean deleteStudentBoolean = studentDao.removeStudent(studentDao.findById(id));
         return deleteStudentBoolean;
-        //return converters.studentToStudentView(deleteStudentBoolean);
     }
 }

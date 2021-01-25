@@ -25,18 +25,7 @@ public class CourseCollectionRepository implements CourseDao{
         int id = CourseSequencer.nextCourseId();
 
         Course newCourse = new Course(id, courseName, startDate, weekDuration);
-        /*
-        if (newCourse == null){
-            throw new IllegalArgumentException("object is null");
-        }
-        if (courseName == null){
-            throw new IllegalArgumentException("object is null");
-        }
-        Course checkCourseDuplicate = findById(newCourse.getId());
-        if (checkCourseDuplicate != null){
-            throw new IllegalArgumentException("Student exists");
 
-        }*/
         courses.add(newCourse);
         return newCourse;
     }
