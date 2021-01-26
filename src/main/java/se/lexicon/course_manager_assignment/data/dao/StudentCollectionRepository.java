@@ -21,17 +21,7 @@ public class StudentCollectionRepository implements StudentDao {
     public Student createStudent(String name, String email, String address) {
         int id = StudentSequencer.nextStudentId();
         Student newStudent = new Student(id, name, email, address);
-        /*if (newStudent == null){
-            throw new IllegalArgumentException("object is null");
-        }
-        if ( email == null){
-            throw new IllegalArgumentException("object is null");
-        }
-        Student checkStudentDuplicate = findById(newStudent.getId());
-        if (checkStudentDuplicate != null){
-            throw new IllegalArgumentException("Student exists");
 
-        }*/
         students.add(newStudent);
         return newStudent;
     }

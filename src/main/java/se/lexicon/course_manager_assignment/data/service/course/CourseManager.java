@@ -40,7 +40,7 @@ public class CourseManager implements CourseService {
                form.getStartDate(),
                form.getWeekDuration(),
                converters.studentsToStudentViews(studentDao.findAll()));
-                    //TODO: Kolla ang findAll... Så det funkar.
+
     }
 
     @Override

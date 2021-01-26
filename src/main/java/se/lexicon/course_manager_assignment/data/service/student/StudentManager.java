@@ -31,12 +31,15 @@ public class StudentManager implements StudentService {
 //DONE
     @Override
     public StudentView create(CreateStudentForm form) {
+        if (form == null){
+            return null;
+        }
 
-                return new StudentView(
-                        form.getId(),
-                        form.getName(),
-                        form.getEmail(),
-                        form.getAddress());
+        return converters.studentToStudentView(
+                studentDao.createStudent(
+                form.getName(),
+                form.getEmail(),
+                form.getAddress()));
     }
 
     @Override

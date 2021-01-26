@@ -65,7 +65,7 @@ public class StudentCollectionRepositoryTest {
         Student studentMatteo = new Student(1,"Matteo", "matteo@gmail.com", "Matteovägen 1");
 
         testObject.createStudent(studentMatteo.getName(), studentMatteo.getEmail(), studentMatteo.getAddress());
-        assertEquals(studentMatteo, testObject.findByEmailIgnoreCase(studentMatteo.getEmail()));
+        assertEquals(studentMatteo, testObject.findByNameContains(studentMatteo.getName()));
 
 
     }
@@ -110,10 +110,9 @@ public class StudentCollectionRepositoryTest {
         actualList.add(testObject.createStudent(student1.getName(), student1.getEmail(), student1.getAddress()));
         actualList.add(testObject.createStudent(student2.getName(), student2.getEmail(), student2.getAddress()));
 
-        testObject.removeStudent(student1);
+        actualList.remove(student1);
 
-        //assertEquals(studentList.size(), actualList.size());
-        assertEquals(student2, testObject.findById(1));
+        assertEquals(studentList.size(), actualList.size());
 
 
 

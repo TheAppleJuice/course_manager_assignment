@@ -79,13 +79,17 @@ public class Course {
 
     public boolean enrollStudent (Student student){
 
-        students.add(student);
+        if (!students.contains(student)) {
+            students.add(student);
+        }
         return true;
     }
 
-    public boolean unenrollStudent (Student student){
+    public boolean unenrollStudent (Student student) {
 
-        students.remove(student);
+        if (!students.contains(student)) {
+            students.remove(student);
+        }
         return true;
     }
 

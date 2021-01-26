@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CreateCourseForm implements Serializable {
+public class  CreateCourseForm implements Serializable {
 
     @Null
     private Integer id;
